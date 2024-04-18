@@ -1,12 +1,12 @@
 const path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
-  entry: "./src/index.jsx",
+  entry: "./index.js",
   output: {
     /** "path"
      * the folder path of the output file
      */
-    path: path.resolve(__dirname, "public"),
+    path: path.resolve(__dirname, "build"),
     /** "filename"
      * the name of the output file
      */
@@ -16,9 +16,15 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: "index.html",
-      template: "./src/index.html",
+      template: "./public/index.html",
     }),
   ],
+
+  /** "target"
+   * setting "node" as target app (server side), and setting it as "web" is
+   * for browser (client side). Default is "web"
+   */
+  target: "web",
   devServer: {
     /** "port"
      * port of dev server
@@ -27,7 +33,7 @@ module.exports = {
     /** "static"
      * This property tells Webpack what static file it should serve
      */
-    static: ["./public"],
+    static: ["./build"],
     /** "open"
      * opens the browser after server is successfully started
      */
