@@ -58,9 +58,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [14.x]
 
-        
+
     steps:
     - name: Print Faulure
       run: echo "Build Failed"
