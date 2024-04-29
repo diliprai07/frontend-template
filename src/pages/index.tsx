@@ -1,15 +1,10 @@
 import * as React from "react";
+import SideBar from "../components/layout/sidebar";
 
 const HomePage = () => {
   return (
     <div className="home_container">
-      <div className="main-info-container">
-        <h1>Best way to build your resume</h1>
-        <h4>
-          One of the best solutions for the working professionals, to build
-          resume and land into best job.
-        </h4>
-      </div>
+      <SideBar />
     </div>
   );
 };
