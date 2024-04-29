@@ -1,0 +1,35 @@
+.sidebar {
+    width: 16%;
+
+    background: $color_pink_s_1;
+    height: 100vh;
+
+    .sidebar-content {
+        // padding: 10px 12px 10px 12px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px 16px;
+
+        .sidebar-item {
+            cursor: pointer;
+            font-size: 24;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: $color_blue_p_1;
+        }
+
+        a:hover {
+            color: $color_white_1;
+        }
+
+
+    }
+}
