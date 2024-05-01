@@ -1,0 +1,6 @@
+.required {}
+
+.required::after {
+    content: "*";
+    color: $color_red_1;
+}

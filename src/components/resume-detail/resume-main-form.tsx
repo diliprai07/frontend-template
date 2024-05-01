@@ -84,17 +84,37 @@ const ResumeMainForm = () => {
         </li>
       </ul>
       <div className="resume-form-container">
-        <div>
-          <label>Full Name</label>
-          <input></input>
+        <div className="resume-form-input">
+          <label className="display-block required">Full Name</label>
+          <input
+            type="text"
+            placeholder="Full Name"
+            className="width-full"
+          ></input>
         </div>
-        <div>
-          <label>Email</label>
-          <input></input>
+        <div className="resume-form-input">
+          <label className="display-block required">Email</label>
+          <input type="text" className="width-full"></input>
         </div>
-        <div>
-          <label>Address</label>
-          <input></input>
+        <div className="resume-form-input">
+          <label className="display-block required">Phone Number</label>
+          <input
+            type="text"
+            placeholder="Full Name"
+            className="width-full"
+          ></input>
+        </div>
+        <div className="resume-form-input">
+          <label className="display-block required">Address</label>
+          <input type="text" className="width-full"></input>
+        </div>
+        <div className="resume-form-introduction">
+          <label className="display-block required">Introduction</label>
+          <textarea className="width-full"></textarea>
+        </div>
+
+        <div className="continue-button">
+          <button className="button-danger">Continue</button>
         </div>
       </div>
     </div>

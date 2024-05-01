@@ -1,9 +1,12 @@
 body {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
+    font-size: 16px;
     font-style: normal;
+    box-sizing: border-box;
     margin: 0px;
     padding: 0px;
+    color: #000000e0
 }
 
 @import 'utilities/_index.scss';
