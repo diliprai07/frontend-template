@@ -54,11 +54,25 @@
             border: 2px solid $color_gray_1;
             border-radius: 10px;
             display: flex;
-            gap: 10px;
             flex-wrap: wrap;
             margin-left: 4rem;
             padding: 1.5rem;
             min-height: 120px;
+            gap: 16px;
+
+            .resume-form-input {
+                width: 49%;
+            }
+
+            .resume-form-introduction {
+                width: 99%;
+            }
+
+            .continue-button {
+                display: flex;
+                justify-content: end;
+                padding-top: 16px;
+            }
         }
 
     }
