@@ -4,4 +4,4 @@
 npx webpack --config webpack.config.js
 
 
-## TODO: Update the necessary information and steps here
+## TODO: Update the necessary information and steps here:
