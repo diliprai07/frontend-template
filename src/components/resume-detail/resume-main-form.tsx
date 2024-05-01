@@ -1,5 +1,22 @@
 import * as React from "react";
 import { RESUME_FORM_STEPPER_DETAIL } from "./constant";
+import { useForm } from "react-hook-form";
+import {
+  EducationDto,
+  GeneralInformationDto,
+  WorkExperienceDto,
+} from "../../models/resume-detail";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { resumeMainFormValidationSchema } from "./resume-main-form-validation-schema";
+import ValidationErrorMessage from "../ui/validation-error-message";
+import ResumeGeneralInfoFom from "./resume-geneal-info-form";
+import ResumeEducationForm from "./resume-education-form";
+import ResumeWorkExperienceFom from "./resume-wok-experience";
+type FormSchema = {
+  generalInformation: GeneralInformationDto;
+  education: EducationDto[];
+  workExperience: WorkExperienceDto[];
+};
 const ResumeMainForm = () => {
   const [resumeFormSteps, setResumeFormSteps] = React.useState<
     Record<string, string>
@@ -8,11 +25,47 @@ const ResumeMainForm = () => {
       RESUME_FORM_STEPPER_DETAIL.introduction,
   });
 
+  const [currentFormSteps, setCurrentResumeSteps] = React.useState<string>(
+    RESUME_FORM_STEPPER_DETAIL.introduction
+  );
+  // Assign initial values of form Schema;
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    control,
+    watch,
+    formState: { errors },
+  } = useForm<FormSchema>({
+    shouldUnregister: true,
+    mode: "onChange",
+    // @ts-ignore
+    resolver: yupResolver(resumeMainFormValidationSchema),
+    defaultValues: {
+      generalInformation: {
+        email: "",
+        phoneNumber: "",
+        fullName: "",
+        address: "",
+        introduction: "",
+        birthDate: "",
+      },
+    },
+  });
+
   const onHandleStepChange = (value: string) => {
     setResumeFormSteps((val) => {
       return { ...val, [`${value}`]: value };
     });
+    setCurrentResumeSteps((val) => {
+      return value;
+    });
   };
+
+  const onSubmit = handleSubmit((values: FormSchema) => {
+    console.log(values);
+  });
+
   return (
     <div className="resume-main-form-stepper">
       <ul className="stepper">
@@ -56,7 +109,7 @@ const ResumeMainForm = () => {
         >
           Work Experience
         </li>
-        <li
+        {/* <li
           onClick={() => {
             onHandleStepChange(RESUME_FORM_STEPPER_DETAIL.projects);
           }}
@@ -81,42 +134,38 @@ const ResumeMainForm = () => {
           }
         >
           Achievements
-        </li>
+        </li> */}
       </ul>
-      <div className="resume-form-container">
-        <div className="resume-form-input">
-          <label className="display-block required">Full Name</label>
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="width-full"
-          ></input>
-        </div>
-        <div className="resume-form-input">
-          <label className="display-block required">Email</label>
-          <input type="text" className="width-full"></input>
-        </div>
-        <div className="resume-form-input">
-          <label className="display-block required">Phone Number</label>
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="width-full"
-          ></input>
-        </div>
-        <div className="resume-form-input">
-          <label className="display-block required">Address</label>
-          <input type="text" className="width-full"></input>
-        </div>
-        <div className="resume-form-introduction">
-          <label className="display-block required">Introduction</label>
-          <textarea className="width-full"></textarea>
-        </div>
-
-        <div className="continue-button">
-          <button className="button-danger">Continue</button>
-        </div>
-      </div>
+      {currentFormSteps === RESUME_FORM_STEPPER_DETAIL.introduction ? (
+        <ResumeGeneralInfoFom
+          errors={errors}
+          register={register}
+          handleContinue={(nextFormName) => {
+            onHandleStepChange(nextFormName);
+          }}
+          currentForm={currentFormSteps}
+        />
+      ) : currentFormSteps === RESUME_FORM_STEPPER_DETAIL.education ? (
+        <ResumeEducationForm
+          errors={errors}
+          register={register}
+          handleContinue={(nextFormName) => {
+            onHandleStepChange(nextFormName);
+          }}
+          currentForm={currentFormSteps}
+        />
+      ) : (
+        currentFormSteps === RESUME_FORM_STEPPER_DETAIL.work_experience && (
+          <ResumeWorkExperienceFom
+            errors={errors}
+            register={register}
+            handleContinue={(nextFormName) => {
+              onHandleStepChange(nextFormName);
+            }}
+            currentForm={currentFormSteps}
+          />
+        )
+      )}
     </div>
   );
 };
