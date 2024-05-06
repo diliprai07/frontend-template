@@ -1,8 +1,10 @@
 .sidebar {
     width: 256px;
-
     background: $color_pink_s_1;
-    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    bottom: 0;
 
     .sidebar-content {
         // padding: 10px 12px 10px 12px;

@@ -4,9 +4,11 @@ import ResumeMainForm from "../components/resume-detail/resume-main-form";
 
 const HomePage = () => {
   return (
-    <div className="home_container">
+    <div className="container">
       <SideBar />
-      <ResumeMainForm />
+      <div className="content-main">
+        <ResumeMainForm />
+      </div>
     </div>
   );
 };
