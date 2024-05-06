@@ -1,0 +1,12 @@
+.header {
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+        color: $color_blue_p_1;
+        font-size: 24px;
+        font-weight: 700;
+        height: 64px;
+    }
+}
