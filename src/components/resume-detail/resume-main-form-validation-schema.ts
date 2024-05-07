@@ -1,5 +1,9 @@
 import * as Yup from "yup";
-import { GENERAL_INTRODUCTION_VALIDATION_SCHEMA } from "./constant";
+import {
+  EDUCATION_VALIDATION_SCHEMA,
+  GENERAL_INTRODUCTION_VALIDATION_SCHEMA,
+  WORK_EXPERIENCE_VALIDATION_SCHEMA,
+} from "./constant";
 export const resumeMainFormValidationSchema = Yup.object().shape({
   generalInformation: Yup.object().shape({
     email: Yup.string().required(
@@ -21,4 +25,28 @@ export const resumeMainFormValidationSchema = Yup.object().shape({
       GENERAL_INTRODUCTION_VALIDATION_SCHEMA.address
     ),
   }),
+  education: Yup.array().of(
+    Yup.object().shape({
+      institution: Yup.string().required(
+        EDUCATION_VALIDATION_SCHEMA.institution
+      ),
+      boad: Yup.string().required(EDUCATION_VALIDATION_SCHEMA.board),
+      startDateYear: Yup.string().required(
+        EDUCATION_VALIDATION_SCHEMA.startDateYear
+      ),
+    })
+  ),
+  workExperience: Yup.array().of(
+    Yup.object().shape({
+      designation: Yup.string().required(
+        WORK_EXPERIENCE_VALIDATION_SCHEMA.designation
+      ),
+      organizationName: Yup.string().required(
+        WORK_EXPERIENCE_VALIDATION_SCHEMA.organizationName
+      ),
+      startDateYear: Yup.string().required(
+        WORK_EXPERIENCE_VALIDATION_SCHEMA.startDateYear
+      ),
+    })
+  ),
 });
