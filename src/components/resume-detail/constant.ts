@@ -16,3 +16,15 @@ export const GENERAL_INTRODUCTION_VALIDATION_SCHEMA = {
   fullName: "Full name is required",
   address: "Address is required",
 };
+
+export const EDUCATION_VALIDATION_SCHEMA = {
+  institution: "Institution is required",
+  board: "Education board is required",
+  startDateYear: "Start date is requied",
+};
+
+export const WORK_EXPERIENCE_VALIDATION_SCHEMA = {
+  designation: "Designation is required",
+  organizationName: "Organization Name is required",
+  startDateYear: "Start date is requied",
+};

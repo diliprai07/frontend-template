@@ -50,6 +50,28 @@ const ResumeMainForm = () => {
         introduction: "",
         birthDate: "",
       },
+      education: [
+        {
+          institution: "",
+          board: "",
+          startDateYear: "",
+          score: "",
+          scoreType: "",
+          remarks: "",
+        },
+      ],
+      workExperience: [
+        {
+          startDateYear: "",
+          startMonth: "",
+          endDateYear: "",
+          endMonth: "",
+          designation: "",
+          organizationName: "",
+          tools: "",
+          responsibilities: "",
+        },
+      ],
     },
   });
 
