@@ -15,80 +15,98 @@ const ResumeEducationForm: React.FC<Props> = ({
   handleContinue,
   currentForm,
 }) => {
+  // institution: "",
+  //         board: "",
+  //         startDateYear: "",
+  //         score: "",
+  //         scoreType: "",
+  //         remarks: "",
   return (
     <div className="resume-form-container">
       <h3 className="width-80">{currentForm}</h3>
       <div className="resume-form-input">
-        <label className="display-block required">Full Name</label>
+        <label className="display-block required">Institution Name</label>
         <input
           type="text"
-          placeholder="Full Name"
+          placeholder="Institution Name"
           className="width-full"
-          {...register("generalInformation.fullName")}
+          {...register("education.institution")}
         ></input>
         <ValidationErrorMessage
-          message={errors?.generalInformation?.fullName?.message ?? ""}
+          message={errors?.education?.institution?.message ?? ""}
         />
       </div>
       <div className="resume-form-input">
-        <label className="display-block required">Email</label>
+        <label className="display-block required">Board</label>
 
         <input
           type="text"
           className="width-full"
-          {...register("generalInformation.email")}
-          placeholder="Email"
+          {...register("education.board")}
+          placeholder="Board"
         ></input>
         <ValidationErrorMessage
-          message={errors?.generalInformation?.email?.message ?? ""}
+          message={errors?.education?.board?.message ?? ""}
         />
       </div>
       <div className="resume-form-input">
-        <label className="display-block required">Phone Number</label>
+        <label className="display-block required">Start date year</label>
         <input
           type="text"
-          placeholder="Phone Number"
+          placeholder="Start date year"
           className="width-full"
-          {...register("generalInformation.phoneNumber")}
+          {...register("education.startDateYear")}
         ></input>
         <ValidationErrorMessage
-          message={errors?.generalInformation?.phoneNumber?.message ?? ""}
+          message={errors?.education?.startDateYear?.message ?? ""}
         />
       </div>
       <div className="resume-form-input">
-        <label className="display-block required">Date of Birth</label>
+        <label className="display-block">End date year (optional)</label>
+        <input
+          type="text"
+          placeholder="Start date year"
+          className="width-full"
+          {...register("education.endDateYear")}
+        ></input>
+        {/* <ValidationErrorMessage
+          message={errors?.education?.phoneNumber?.message ?? ""}
+        /> */}
+      </div>
+      <div className="resume-form-input">
+        <label className="display-block required">Score</label>
         <input
           type="text"
           className="width-full"
-          {...register("generalInformation.birthDate")}
-          placeholder="Date of Birth"
+          {...register("education.score")}
+          placeholder="Score"
         ></input>
         <ValidationErrorMessage
-          message={errors?.generalInformation?.birthDate?.message ?? ""}
+          message={errors?.education?.score?.message ?? ""}
         />
       </div>
       <div className="resume-form-input">
-        <label className="display-block required">Address</label>
+        <label className="display-block required">Score Type</label>
         <input
           type="text"
           className="width-full"
-          {...register("generalInformation.address")}
-          placeholder="Address"
+          {...register("education.scoreType")}
+          placeholder="Score Type"
         ></input>
         <ValidationErrorMessage
-          message={errors?.generalInformation?.address?.message ?? ""}
+          message={errors?.education?.scoreType?.message ?? ""}
         />
       </div>
 
       <div className="resume-form-input">
-        <label className="display-block required">Introduction</label>
+        <label className="display-block required">Remarks</label>
         <textarea
           className="width-full"
-          {...register("generalInformation.introduction")}
+          {...register("education.remarks")}
           placeholder="Introduction"
         ></textarea>
         <ValidationErrorMessage
-          message={errors?.generalInformation?.introduction?.message ?? ""}
+          message={errors?.education?.remarks?.message ?? ""}
         />
       </div>
 

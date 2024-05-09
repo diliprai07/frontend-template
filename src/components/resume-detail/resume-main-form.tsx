@@ -34,6 +34,7 @@ const ResumeMainForm = () => {
     setValue,
     handleSubmit,
     control,
+    trigger,
     watch,
     formState: { errors },
   } = useForm<FormSchema>({
@@ -88,6 +89,7 @@ const ResumeMainForm = () => {
     console.log(values);
   });
 
+  console.log(errors);
   return (
     <div className="resume-main-form-stepper">
       <ul className="stepper">
@@ -162,8 +164,11 @@ const ResumeMainForm = () => {
         <ResumeGeneralInfoFom
           errors={errors}
           register={register}
-          handleContinue={(nextFormName) => {
-            onHandleStepChange(nextFormName);
+          handleContinue={async (nextFormName) => {
+            const isTrigger = await trigger(["generalInformation"]);
+            if (isTrigger) {
+              onHandleStepChange(nextFormName);
+            }
           }}
           currentForm={currentFormSteps}
         />
@@ -171,8 +176,11 @@ const ResumeMainForm = () => {
         <ResumeEducationForm
           errors={errors}
           register={register}
-          handleContinue={(nextFormName) => {
-            onHandleStepChange(nextFormName);
+          handleContinue={async (nextFormName) => {
+            const isTrigger = await trigger(["education"]);
+            if (isTrigger) {
+              onHandleStepChange(nextFormName);
+            }
           }}
           currentForm={currentFormSteps}
         />
