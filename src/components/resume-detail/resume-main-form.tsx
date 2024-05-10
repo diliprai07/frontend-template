@@ -189,7 +189,7 @@ const ResumeMainForm = () => {
           <ResumeWorkExperienceFom
             errors={errors}
             register={register}
-            handleContinue={async (nextFormName) => {
+            handleContinue={async () => {
               const isTrigger = await trigger(["workExperience"]);
               // if (isTrigger) {
               //   onHandleStepChange(nextFormName);
