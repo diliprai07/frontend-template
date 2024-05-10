@@ -1,102 +1,198 @@
 import * as React from "react";
 import ValidationErrorMessage from "../ui/validation-error-message";
 import { RESUME_FORM_STEPPER_DETAIL } from "./constant";
+import { Control, FieldErrors, useFieldArray } from "react-hook-form";
+import { FormSchema } from "./resume-main-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 type Props = {
-  errors: any;
+  errors: FieldErrors<FormSchema>;
   register: any;
   handleContinue: (nextFormName: string) => void;
   currentForm: string;
+  control: Control<FormSchema, any>;
 };
 
 const ResumeWorkExperienceFom: React.FC<Props> = ({
   errors,
   register,
-  currentForm,
   handleContinue,
+  currentForm,
+  control,
 }) => {
+  // Work Experience Detail of the user.
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control, // control props comes from useForm (optional: if you are using FormProvider)
+      name: "workExperience", // unique name for your Field Array
+    }
+  );
+
   return (
     <div className="resume-form-container">
       <h3 className="width-80">{currentForm}</h3>
-      <div className="resume-form-input">
-        <label className="display-block required">Full Name</label>
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="width-full"
-          {...register("generalInformation.fullName")}
-        ></input>
-        <ValidationErrorMessage
-          message={errors?.generalInformation?.fullName?.message ?? ""}
-        />
-      </div>
-      <div className="resume-form-input">
-        <label className="display-block required">Email</label>
+      <button
+        className="button-primary-outlined"
+        onClick={() => {
+          append({
+            startDateYear: "",
+            startMonth: "",
+            endDateYear: "",
+            endMonth: "",
+            designation: "",
+            organizationName: "",
+            tools: "",
+            responsibilities: "",
+          });
+        }}
+      >
+        +
+      </button>
+      {fields?.map((field, index) => (
+        <React.Fragment>
+          <div className="resume-form-input">
+            <label className="display-block required">Organization</label>
+            <input
+              type="text"
+              placeholder="Full Name"
+              className="width-full"
+              {...register(`workExperience.${index}.organizationName`)}
+            ></input>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.organizationName`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+          <div className="resume-form-input">
+            <label className="display-block required">Start date year</label>
 
-        <input
-          type="text"
-          className="width-full"
-          {...register("generalInformation.email")}
-          placeholder="Email"
-        ></input>
-        <ValidationErrorMessage
-          message={errors?.generalInformation?.email?.message ?? ""}
-        />
-      </div>
-      <div className="resume-form-input">
-        <label className="display-block required">Phone Number</label>
-        <input
-          type="text"
-          placeholder="Phone Number"
-          className="width-full"
-          {...register("generalInformation.phoneNumber")}
-        ></input>
-        <ValidationErrorMessage
-          message={errors?.generalInformation?.phoneNumber?.message ?? ""}
-        />
-      </div>
-      <div className="resume-form-input">
-        <label className="display-block required">Date of Birth</label>
-        <input
-          type="text"
-          className="width-full"
-          {...register("generalInformation.birthDate")}
-          placeholder="Date of Birth"
-        ></input>
-        <ValidationErrorMessage
-          message={errors?.generalInformation?.birthDate?.message ?? ""}
-        />
-      </div>
-      <div className="resume-form-input">
-        <label className="display-block required">Address</label>
-        <input
-          type="text"
-          className="width-full"
-          {...register("generalInformation.address")}
-          placeholder="Address"
-        ></input>
-        <ValidationErrorMessage
-          message={errors?.generalInformation?.address?.message ?? ""}
-        />
-      </div>
+            <input
+              type="text"
+              className="width-full"
+              {...register(`workExperience.${index}.startDateYear`)}
+              placeholder="Start date year"
+            ></input>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.startDateYear`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+          <div className="resume-form-input">
+            <label className="display-block required">Start Month</label>
 
-      <div className="resume-form-input">
-        <label className="display-block required">Introduction</label>
-        <textarea
-          className="width-full"
-          {...register("generalInformation.introduction")}
-          placeholder="Introduction"
-        ></textarea>
-        <ValidationErrorMessage
-          message={errors?.generalInformation?.introduction?.message ?? ""}
-        />
-      </div>
+            <input
+              type="text"
+              className="width-full"
+              {...register(`workExperience.${index}.startMonth`)}
+              placeholder="Start date year"
+            ></input>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.startMonth`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+          <div className="resume-form-input">
+            <label className="display-block required">End date year</label>
+
+            <input
+              type="text"
+              className="width-full"
+              {...register(`workExperience.${index}.endDateYear`)}
+              placeholder="End date year"
+            ></input>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.endDateYear`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+          <div className="resume-form-input">
+            <label className="display-block required">End month</label>
+
+            <input
+              type="text"
+              className="width-full"
+              {...register(`workExperience.${index}.endMonth`)}
+              placeholder="End Month"
+            ></input>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.endMonth`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+          <div className="resume-form-input">
+            <label className="display-block required">Designation</label>
+
+            <input
+              type="text"
+              className="width-full"
+              {...register(`workExperience.${index}.designation`)}
+              placeholder="Designation"
+            ></input>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.designation`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+          <div className="resume-form-input">
+            <label className="display-block required">Tools</label>
+
+            <input
+              type="text"
+              className="width-full"
+              {...register(`workExperience.${index}.tools`)}
+              placeholder="Tools"
+            ></input>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.tools`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+          <div className="resume-form-input">
+            <label className="display-block required">Responsibilities</label>
+
+            <textarea
+              type="text"
+              className="width-full"
+              {...register(`workExperience.${index}.responsibilities`)}
+              placeholder="Responsibilities"
+            ></textarea>
+            <ErrorMessage
+              errors={errors}
+              name={`workExperience.${index}.responsibilities`}
+              render={({ message }) => (
+                <ValidationErrorMessage message={message} />
+              )}
+            />
+          </div>
+        </React.Fragment>
+      ))}
 
       <div className="continue-button">
         <button
           className="button-primary-filled"
           onClick={() => {
-            handleContinue(RESUME_FORM_STEPPER_DETAIL.education);
+            handleContinue(RESUME_FORM_STEPPER_DETAIL.work_experience);
           }}
         >
           Continue

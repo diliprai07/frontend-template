@@ -11,6 +11,7 @@ export interface EducationDto {
   institution: string;
   board: string;
   startDateYear: string;
+  endDateYear?: string;
   score: string;
   scoreType: string;
   remarks: string;

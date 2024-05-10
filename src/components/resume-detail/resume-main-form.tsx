@@ -12,7 +12,7 @@ import ValidationErrorMessage from "../ui/validation-error-message";
 import ResumeGeneralInfoFom from "./resume-geneal-info-form";
 import ResumeEducationForm from "./resume-education-form";
 import ResumeWorkExperienceFom from "./resume-wok-experience";
-type FormSchema = {
+export type FormSchema = {
   generalInformation: GeneralInformationDto;
   education: EducationDto[];
   workExperience: WorkExperienceDto[];
@@ -89,7 +89,6 @@ const ResumeMainForm = () => {
     console.log(values);
   });
 
-  console.log(errors);
   return (
     <div className="resume-main-form-stepper">
       <ul className="stepper">
@@ -182,6 +181,7 @@ const ResumeMainForm = () => {
               onHandleStepChange(nextFormName);
             }
           }}
+          control={control}
           currentForm={currentFormSteps}
         />
       ) : (
@@ -189,9 +189,13 @@ const ResumeMainForm = () => {
           <ResumeWorkExperienceFom
             errors={errors}
             register={register}
-            handleContinue={(nextFormName) => {
-              onHandleStepChange(nextFormName);
+            handleContinue={async (nextFormName) => {
+              const isTrigger = await trigger(["workExperience"]);
+              // if (isTrigger) {
+              //   onHandleStepChange(nextFormName);
+              // }
             }}
+            control={control}
             currentForm={currentFormSteps}
           />
         )
