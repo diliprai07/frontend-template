@@ -28,3 +28,6 @@ export const WORK_EXPERIENCE_VALIDATION_SCHEMA = {
   organizationName: "Organization Name is required",
   startDateYear: "Start date is requied",
 };
+
+export const RESUME_DETAIL_SAVE_SUCCESS_MESSAGE =
+  "Detail is saved successfully";

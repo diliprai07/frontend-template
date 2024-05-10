@@ -1,0 +1,26 @@
+.success-mesaage {
+    background: $color_blue_p_1;
+    width: 250px;
+    padding: 6px;
+    color: $color_white_1;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    border-radius: 6px;
+
+}
+
+.error-message {
+    background: $color_red_1;
+    width: 250px;
+    padding: 6px;
+    color: $color_white_1;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    border-radius: 6px;
+}

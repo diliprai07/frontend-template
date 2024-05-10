@@ -84,7 +84,7 @@ const ResumeWorkExperienceFom: React.FC<Props> = ({
             />
           </div>
           <div className="resume-form-input">
-            <label className="display-block required">Start month</label>
+            <label className="display-block">Start month</label>
 
             <input
               type="text"
@@ -101,7 +101,7 @@ const ResumeWorkExperienceFom: React.FC<Props> = ({
             />
           </div>
           <div className="resume-form-input">
-            <label className="display-block required">End date year</label>
+            <label className="display-block">End date year</label>
 
             <input
               type="text"
@@ -118,7 +118,7 @@ const ResumeWorkExperienceFom: React.FC<Props> = ({
             />
           </div>
           <div className="resume-form-input">
-            <label className="display-block required">End month</label>
+            <label className="display-block">End month</label>
 
             <input
               type="text"
@@ -152,7 +152,7 @@ const ResumeWorkExperienceFom: React.FC<Props> = ({
             />
           </div>
           <div className="resume-form-input">
-            <label className="display-block required">Tools</label>
+            <label className="display-block">Tools</label>
 
             <input
               type="text"
@@ -169,7 +169,7 @@ const ResumeWorkExperienceFom: React.FC<Props> = ({
             />
           </div>
           <div className="resume-form-input">
-            <label className="display-block required">Responsibilities</label>
+            <label className="display-block">Responsibilities</label>
 
             <textarea
               type="text"

@@ -1,10 +1,7 @@
 import axios, { AxiosError } from "axios";
-// import { USER_DETAILS } from '../constants';
-// import jwt_decode from "jwt-decode";
-// import { APP_ROUTES } from '../appRoutes';
 
 const http = axios.create({
-  baseURL: process.env.REACT_APP_API_BASE_USER_URL,
+  baseURL: "http://localhost:8080/",
   timeout: 30000,
   headers: {
     Accept: "application/json",
@@ -15,32 +12,6 @@ const http = axios.create({
 // Change request data
 http.interceptors.request.use(
   (config) => {
-    // const userDetails = localStorage.getItem(USER_DETAILS);
-
-    // // // Decpde id token and check it is expired or not?
-    // let userDetailsJson = userDetails? JSON.parse(userDetails) : undefined;
-    // const token = userDetailsJson?.signInUserSession?.idToken?.jwtToken;
-
-    // Decpde id token and check it is expired or not?
-    // if(token) {
-    //     let decodedToken = jwt_decode(token);
-
-    //     let secondsNow = new Date().getTime() / 1000;
-
-    //     // @ts-ignore
-    //     if(secondsNow>Number(decodedToken?.exp)) {
-    //         localStorage.removeItem(USER_DETAILS);
-    //         window.location.reload();
-    //     }
-    // }
-
-    // if(token) {
-    //     config.headers = {
-    //         ...config.headers,
-    //         Authorization: `${token}`,
-    //     }
-    // }
-
     return config;
   },
   (error) => {
@@ -73,7 +44,7 @@ export default http;
 
 const formatError = (error: AxiosError<any> | Error) => {
   let errorRes = {
-    message: "Error Occured",
+    message: "Something went wrong!",
   };
 
   if (axios.isAxiosError(error)) {
