@@ -1,5 +1,8 @@
 import * as React from "react";
-import { RESUME_FORM_STEPPER_DETAIL } from "./constant";
+import {
+  RESUME_DETAIL_SAVE_SUCCESS_MESSAGE,
+  RESUME_FORM_STEPPER_DETAIL,
+} from "./constant";
 import { useForm } from "react-hook-form";
 import {
   EducationDto,
@@ -12,6 +15,13 @@ import ValidationErrorMessage from "../ui/validation-error-message";
 import ResumeGeneralInfoFom from "./resume-geneal-info-form";
 import ResumeEducationForm from "./resume-education-form";
 import ResumeWorkExperienceFom from "./resume-wok-experience";
+// import { baseRepository } from "../../repositories/base";
+import { API_END_POINTS } from "../../utils/api/endpoints";
+import SuccessMessage from "../ui/success-message";
+import { baseRepository } from "../../repositories/base";
+import { API_ERROR_MESSAGE } from "../../utils/app-constant";
+import ErrorMessage from "../ui/error-message";
+
 export type FormSchema = {
   generalInformation: GeneralInformationDto;
   education: EducationDto[];
@@ -24,7 +34,8 @@ const ResumeMainForm = () => {
     [`${RESUME_FORM_STEPPER_DETAIL.introduction}`]:
       RESUME_FORM_STEPPER_DETAIL.introduction,
   });
-
+  const [successMessage, setSuccessMessage] = React.useState<string>("");
+  const [errorMessage, setErrorMessage] = React.useState<string>("");
   const [currentFormSteps, setCurrentResumeSteps] = React.useState<string>(
     RESUME_FORM_STEPPER_DETAIL.introduction
   );
@@ -38,7 +49,7 @@ const ResumeMainForm = () => {
     watch,
     formState: { errors },
   } = useForm<FormSchema>({
-    shouldUnregister: true,
+    shouldUnregister: false,
     mode: "onChange",
     // @ts-ignore
     resolver: yupResolver(resumeMainFormValidationSchema),
@@ -85,8 +96,19 @@ const ResumeMainForm = () => {
     });
   };
 
+  console.log(errors);
   const onSubmit = handleSubmit((values: FormSchema) => {
     console.log(values);
+    baseRepository
+      .post(API_END_POINTS.save_resume, values)
+      .then((res) => {
+        setSuccessMessage(RESUME_DETAIL_SAVE_SUCCESS_MESSAGE);
+        setErrorMessage("");
+      })
+      .catch((error) => {
+        setSuccessMessage("");
+        setErrorMessage(error?.message ?? API_ERROR_MESSAGE);
+      });
   });
 
   return (
@@ -159,6 +181,22 @@ const ResumeMainForm = () => {
           Achievements
         </li> */}
       </ul>
+      {successMessage && (
+        <SuccessMessage
+          message={successMessage}
+          onClose={() => {
+            setSuccessMessage("");
+          }}
+        />
+      )}
+      {errorMessage && (
+        <ErrorMessage
+          message={errorMessage}
+          onClose={() => {
+            setErrorMessage("");
+          }}
+        />
+      )}
       {currentFormSteps === RESUME_FORM_STEPPER_DETAIL.introduction ? (
         <ResumeGeneralInfoFom
           errors={errors}
@@ -189,12 +227,7 @@ const ResumeMainForm = () => {
           <ResumeWorkExperienceFom
             errors={errors}
             register={register}
-            handleContinue={async () => {
-              const isTrigger = await trigger(["workExperience"]);
-              // if (isTrigger) {
-              //   onHandleStepChange(nextFormName);
-              // }
-            }}
+            handleContinue={onSubmit}
             control={control}
             currentForm={currentFormSteps}
           />
