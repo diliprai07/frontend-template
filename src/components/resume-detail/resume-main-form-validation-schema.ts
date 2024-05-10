@@ -30,7 +30,7 @@ export const resumeMainFormValidationSchema = Yup.object().shape({
       institution: Yup.string().required(
         EDUCATION_VALIDATION_SCHEMA.institution
       ),
-      boad: Yup.string().required(EDUCATION_VALIDATION_SCHEMA.board),
+      board: Yup.string().required(EDUCATION_VALIDATION_SCHEMA.board),
       startDateYear: Yup.string().required(
         EDUCATION_VALIDATION_SCHEMA.startDateYear
       ),
