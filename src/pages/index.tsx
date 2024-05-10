@@ -7,7 +7,6 @@ const HomePage = () => {
     <div className="container">
       <SideBar />
       <div className="content-main">
-        hello
         <ResumeMainForm />
       </div>
     </div>
