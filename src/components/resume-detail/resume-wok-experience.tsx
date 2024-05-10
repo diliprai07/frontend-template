@@ -8,7 +8,7 @@ import { ErrorMessage } from "@hookform/error-message";
 type Props = {
   errors: FieldErrors<FormSchema>;
   register: any;
-  handleContinue: (nextFormName: string) => void;
+  handleContinue: () => void;
   currentForm: string;
   control: Control<FormSchema, any>;
 };
@@ -84,13 +84,13 @@ const ResumeWorkExperienceFom: React.FC<Props> = ({
             />
           </div>
           <div className="resume-form-input">
-            <label className="display-block required">Start Month</label>
+            <label className="display-block required">Start month</label>
 
             <input
               type="text"
               className="width-full"
               {...register(`workExperience.${index}.startMonth`)}
-              placeholder="Start date year"
+              placeholder="Start month"
             ></input>
             <ErrorMessage
               errors={errors}
@@ -192,10 +192,10 @@ const ResumeWorkExperienceFom: React.FC<Props> = ({
         <button
           className="button-primary-filled"
           onClick={() => {
-            handleContinue(RESUME_FORM_STEPPER_DETAIL.work_experience);
+            handleContinue();
           }}
         >
-          Continue
+          Save
         </button>
       </div>
     </div>
