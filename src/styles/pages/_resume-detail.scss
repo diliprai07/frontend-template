@@ -1,0 +1,14 @@
+.resume-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc(100vw - 290px);
+    box-sizing: border-box;
+
+    .resume-header {
+        font-size: 32px;
+        color: $color_black;
+        align-self: center;
+    }
+}
