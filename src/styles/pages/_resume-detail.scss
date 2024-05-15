@@ -7,8 +7,16 @@
     box-sizing: border-box;
 
     .resume-header {
+        font-size: 36px;
+        color: $color_black;
+        align-self: center;
+        font-weight: 700;
+    }
+
+    .designation {
         font-size: 32px;
         color: $color_black;
         align-self: center;
+        font-weight: 500;
     }
 }
